@@ -2,6 +2,7 @@
 
 namespace Idea\Logger;
 
+use Idea\Container\Container;
 use Idea\Logger\Formatter\TelegramFormatter;
 use Exception;
 use Monolog\Handler\StreamHandler;
@@ -48,7 +49,7 @@ class LoggerFactory
 
     protected function setFileHandler(): void
     {
-        $streamHandler = new StreamHandler($_SERVER['DOCUMENT_ROOT'] . '/log/log.log');
+        $streamHandler = new StreamHandler(Container::getInstance('app')->basePath . '/logs/log.log');
         $this->logger->pushHandler($streamHandler);
     }
 }
